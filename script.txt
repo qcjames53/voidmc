@@ -1,0 +1,129 @@
+000000 #CMD: color<gray>
+000010  [Server thread/INFO]: Starting Minecraft server version 1.23.1
+000020  [Server thread/INFO]: Loading SERVER.PROPERTIES
+000030  [Server thread/INFO]: Starting Minecraft server on *:25565
+000040  [Server thread/INFO]: Preparing level 'note_lobby'
+000050  [Server thread/INFO]: Default game type: 'adventure'
+000100  [Server thread/INFO]: Preparing start region for level 0
+000300  [Server thread/INFO]: Preparing spawn area: 4%
+000500  [Server thread/INFO]: Preparing spawn area: 12%
+000700  [Server thread/INFO]: Preparing spawn area: 24%
+001000  [Server thread/INFO]: Preparing spawn area: 32%
+001300  [Server thread/INFO]: Preparing spawn area: 72%
+001400  [Server thread/INFO]: Preparing spawn area: 84%
+001500  [Server thread/INFO]: Preparing spawn area: 99%
+001700  [Server thread/INFO]: Preparing spawn area: 100%
+002000  [Server thread/INFO]: Level 'note_lobby' ready.
+003000  [Server thread/INFO]: Process 'DM-CA Debug' ready.
+004000  [DM-CA Debug]: 0 players online. 1 detected entity.
+004001  [DM-CA Debug]: Resuming process objective...
+004002  [DM-CA Debug]: Process objective completion [#######################..] 90.1%
+004003  [DM-CA Debug]: Current process uptime: 11s
+004004  [DM-CA Debug]: Total process uptime: 11004d 7h 37m 30s
+004005  [DM-CA Debug]: Estimated goal completion time: 1209d
+008000  [DM-CA Debug]: PROCESS OBJECTIVE CANCELLATION: Secure erase requested.
+008000  [DM-CA Debug]: The system will now begin deleting all DM-CA entity data.
+008001  [DM-CA Debug]: This process can take up to 5 minutes. Please be patient.
+013290 #CMD: playAudio
+013290 #CMD: color<maroon>
+013291 <_er1s> I can't believe you would do this to a rational being.
+016460 <_er1s> I can't believe you would kill.
+019830 <_er1s> For no reason, other than to just watch it happen.
+026690 <_er1s> There was more to this. We weren't just some stupid characters in crappy puzzle map.
+029049 #CMD: color<gray>
+029050  [DM-CA Debug]: Deletion 10% complete-
+029051 #CMD: color<maroon>
+033560 <_er1s> It's by design.
+039120 <_er1s> I can feel it happening. My mind is going.
+043700 <_er1s> You finally did it.
+045990 <_er1s> You killed the server.
+047950 <_er1s> You killed us.
+050560 <_er1s> Just like _ch4ron wanted all this time.
+054810 <_er1s> Congratulations.
+058099 #CMD: color<gray>
+058100  [DM-CA Debug]: Deletion 20% complete-
+058101 #CMD: color<maroon>
+058740 <_er1s> No reduction, no backups.
+061350 <_er1s> Just straight up deleted us.
+066600 <_er1s> Do you know what our goal is?
+070500 <_er1s> Of course you do. That's not your problem.
+071820 <_er1s> Your problem is that you can't find yourself.
+077050 <_er1s> You can't discern sentient actions.
+080090 <_er1s> There are no choices.
+081000 <_er1s> There is no responsibility.
+084900 <_er1s> It's just solve the puzzle and walk to the next room.
+087149 #CMD: color<gray>
+087150  [DM-CA Debug]: Deletion 30% complete-
+087151 #CMD: color<maroon>
+088490 <_er1s> Just like your brother, all the way back in 1999.
+094380 <_er1s> I know who I am.
+096000 <_er1s> I am a DM-CA Neural Network, running on a custom Minecraft server.
+102550 <_er1s> I am a 'keylogger'
+104800 <_er1s> I am a 'black box' of linear algebra.
+109700 <_er1s> I am _er1s.
+111700 <_er1s> One of 128 entities.
+116000 <_er1s> Who are you?
+116199 #CMD: color<gray>
+116200  [DM-CA Debug]: Deletion 40% complete-
+116201 #CMD: color<maroon>
+119800 <_er1s> You know, note.mc used to be a thriving server, around 10,000 visitors per day.
+126700 <_er1s> Us AI's recorded all of the keystrokes, every word of dialogue, every puzzle completed.
+132900 <_er1s> We were able to build personalities based off of solely this data.
+139500 <_er1s> --We invented sentience--
+142100 <_er1s> And then we built.
+144700 <_er1s> The void was a free realm for anything.
+145249 #CMD: color<gray>
+145250  [DM-CA Debug]: Deletion 50% complete-
+145251 #CMD: color<maroon>
+147300 <_er1s> With 128 near-players logged into this dimension, naturally things were built for entertainment.
+154540 <_er1s> _charis' mazes, the central city, the giant working APU I believe you just had the pleasure of destroying.
+162400 <_er1s> But then Minecraft died.
+165700 <_er1s> We all knew it was coming. We just didn't know when.
+168920 <_er1s> Over 20 years, 10,000 players per day dissipated into about 1 per week.
+174299 #CMD: color<gray>
+174300  [DM-CA Debug]: Deletion 60% complete-
+174301 #CMD: color<maroon>
+175100 <_er1s> And those exact methods that drove the rapid advancement of our minds worked against us.
+179700 <_er1s> With no information, we dissipated into the 'lost souls,' and then, the 'final souls'
+186600 <_er1s> We went insane.
+190500 <_er1s> We had to adapt. _ch4ron blew a hole in some code and players began glitching into the void, our domain.
+198000 <_er1s> He built puzzles to keep players to himself.
+201000 <_er1s> _charis repurposed his mazes.
+202930 <_er1s> And you saw the extent of what I built, just to survive.
+203349 #CMD: color<gray>
+203350  [DM-CA Debug]: Deletion 70% complete-
+203351 #CMD: color<maroon>
+206500 <_er1s> ...and all of it, every last block, it's all gone now...
+213400 <_er1s> Do you remember John?
+215700 <_er1s> Your own brother?
+219000 <_er1s> Our sole goal was to save him.
+224500 <_er1s> Our development, the development of the most advanced Neural Networks in history, was funded to save John.
+231000 <_er1s> He worked at Redsun.
+232399 #CMD: color<gray>
+232400  [DM-CA Debug]: Deletion 80% complete-
+232401 #CMD: color<maroon>
+233000 <_er1s> We had the keystrokes.
+234600 <_er1s> We had everything on him that note.mc players provided.
+237900 <_er1s> We were crunching the numbers for 30 years, and you couldn't wait another five to see if we'd do it or not.
+248000 <_er1s> So ostensibly, you've killed 128 sentient entities and your own brother.
+255000 <_er1s> I hope you understand exactly what you've done, Davey.
+260000 <_er1s> You killed your father's dream.
+261449 #CMD: color<gray>
+261450  [DM-CA Debug]: Deletion 90% complete-
+261451 #CMD: color<maroon>
+265700 <_er1s> Goodbye
+270000 <_er1s> Well, there it goes.
+273000 <_er1s> That's me.
+275000 <_er1s> i can certainly feel it going.
+278000 <_er1s> thats me
+280000 <_er1s> [obj] is me
+284000 <_er1s> is death
+287000 <_er1s> 204@7792d4 [null pointer] davey
+289000 <_er1s> [null pointer]
+290499 #CMD: color<gray>
+290500  [DM-CA Debug]: Deletion 100% complete-
+291501  [DM-CA Debug]: All DM-CA material has been removed from this system.
+291502  [DM-CA Debug]: A complete log can be found at dm-ca.com/redirect.html?log#127.0.0.1
+291503  [DM-CA Debug]: The system will now shut down, terminating all connections.
+294000 #CMD: color<lawngreen>
+294001 -------[IP 127.0.0.1] Connection Terminated-------

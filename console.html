@@ -1,0 +1,787 @@
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Welcome to BS-DOS!</title>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet"> 
+    <style>
+    
+    .console {
+        position: absolute;
+        margin: auto;
+        z-index: 1;
+    }
+	
+	.cf{
+		position: absolute;
+        margin: auto;
+        z-index: 0;
+		border: 0;
+		pointer-events: none;
+	}
+	
+	#header{
+		margin-left: 10px;
+	}
+    
+    </style>
+    
+</head>
+<body style="overflow: hidden; background-color:black; color:lawngreen; font: 12px Ubuntu Mono;">
+<div id="header" style="z-index=-100;">BS-DOS Online Terminal. Machine IP: 127.0.0.1</div>
+<iframe class="cf" id="myFrame" src="" width="560" height="420"></iframe>
+<canvas class="console" id="myCanvas" width="1000" height="420">Your browser does not support the canvas tag.</canvas>
+
+
+<script>
+//display text
+var canvas = document.getElementById('myCanvas');
+var frame = document.getElementById('myFrame');
+var ctx = canvas.getContext('2d');
+var cursorOn=1,cursX=10, cursY=30;
+var textColor ="lawngreen";
+var scriptImport = new XMLHttpRequest();
+scriptImport.open("GET", "http://quinnjam.es/void/script.txt", true);
+scriptImport.send(null);
+var script = "init";
+
+//commands & position
+var currentInput ="";
+var pos = 0;
+var posMem = 0;
+var interval; 
+
+//snake
+var px = py = 10;
+var xv = yv = 0;
+var ax = ay = 15;
+var trail=[];
+var tail = 5;
+
+//audio and visuals
+var header = document.getElementById('header');
+var boot = new Audio("boot.mp3");
+var light = new Audio("light.mp3");
+var snakeAudio = new Audio("snake.mp3");
+var war = new Audio("war.mp3");
+war.load();
+var oofct = 0;
+var oofit = 0;
+var oofer;
+var url = ["https://player.vimeo.com/video/45196609?autoplay=1","https://theuselessweb.site/blueballmachine/",
+			"https://en.wikipedia.org/wiki/Psychology","https://imgs.xkcd.com/comics/(.png",
+			"https://www.youtube.com/embed/jNQXAC9IVRw?autoplay=1&controls=0&showinfo=0"];
+
+function displayTerm(){
+    ctx.fillStyle  = "black";
+    ctx.fillRect(0,0,560,420);
+    ctx.fillStyle = textColor;
+    ctx.font = "12px Ubuntu Mono";
+    type("Biogen Solutions Disk Operating System (BS-DOS) 1.9.4");
+    newline(1);
+    type("Copyright (c)2010 Biogen Corporate Solutions, LLC. A subsidiary of DM-CA");
+    newline(2); 
+	type("-----RUNNING AT DEFAULT 560*420 FOR COMPATIBILITY-----");
+    newline(2);
+	pos = 0;
+}
+
+function newline(n){
+    cursX=10; cursY+=10*n;
+	if(cursY > 410) {
+		shiftLine();
+	}
+}
+
+function shiftLine(){
+	while(cursY > 410) {
+		var imageData = ctx.getImageData(0, 10, ctx.canvas.width, ctx.canvas.height-10);
+		ctx.fillStyle = "black";
+		ctx.fillRect(0,0,1000,420);
+		ctx.putImageData(imageData, 0, 0);
+		cursY-=10;
+	}
+}
+
+function type(string){
+    ctx.fillStyle = textColor;
+    ctx.font = "12px Ubuntu Mono";
+    if (pos == 1) {
+		for (i = 0; i < string.length; i++) {
+			if(Math.random() > 0.95) {
+				string = string.substring(0,i) + String.fromCharCode(Math.floor(Math.random() * 222) + 32) + string.substring(i+1);
+			}
+		}
+	}
+	ctx.fillText(string,cursX,cursY);
+    cursX+=string.length*8;
+}
+
+function flashCursor(){
+    if(cursorOn==1) {
+        ctx.fillStyle = textColor;
+        ctx.fillRect(cursX,cursY-11,7,14);
+    }
+    else {
+        cursorOff();
+    }
+    cursorOn=-cursorOn;
+}
+
+function loopOof() {
+	oofit++;
+	var temp = new Audio("oof.mp3");
+	temp.play();
+	if (oofit >= oofct) {
+		oofit = 0;
+		clearInterval(oofer);
+	}
+}
+
+function cursorOff(){
+    ctx.fillStyle = "black";
+    ctx.fillRect(cursX,cursY-11,7,14);
+}
+
+function clearScreen() {
+    ctx.fillStyle = "black";
+	ctx.fillRect(0,0,1000,420);
+    cursX = 10;
+    cursY = 0;
+}
+
+function iframe() {
+	frame.style = "z-index:2;";
+	frame.src = url[Math.floor(Math.random() * url.length)];
+	setTimeout(iframeOff, (10000));
+}
+
+function iframeOff() {
+	frame.style = "z-index:0;";
+	frame.src = "";
+}
+
+function delayText(text) {
+	cursorOff();
+	if(text.indexOf("#CMD:") != -1) {
+		if(text.indexOf("playAudio") != -1) {
+			war.play();
+		}
+		else if(text.indexOf("color") != -1) {
+			textColor = text.substring(text.indexOf("<")+1,text.indexOf(">"));
+		}
+	}
+	else {
+		type(text);
+		newline(1);
+	}
+}
+
+function doKeyDown(evt){
+	//command line
+	if(pos >= 0) {
+		cursorOff();
+		if(evt.keyCode==8){ 
+			if(currentInput.length > 0) {
+				cursX -= 6;
+				cursorOff();
+				currentInput = currentInput.substring(0,currentInput.length - 1);
+			}
+			return;
+		}
+		if(evt.keyCode==13){ 
+			validateInput(currentInput);
+			currentInput = "";
+			return;
+		}
+		if(currentInput.length >= 35) {
+			var blip = new Audio("blip.mp3");
+			blip.play();
+			return;
+		}
+		ctx.fillStyle = textColor;
+		if(evt.keyCode==173 || evt.keyCode==189) {
+			ctx.fillText("-",cursX,cursY);
+			currentInput += "-";
+			cursX += 6;
+			return;
+		}
+		if(evt.keyCode==190) {
+			ctx.fillText(".",cursX,cursY);
+			currentInput += ".";
+			cursX += 6;
+			return;
+		}
+		if(evt.keyCode==32) {
+			ctx.fillText(" ",cursX,cursY);
+			currentInput += " ";
+			cursX += 6;
+			return;
+		}
+		if((evt.keyCode >= 48 && evt.keyCode <= 90) || (evt.keyCode >= 96 && evt.keyCode <= 105)) {
+			ctx.fillText(String.fromCharCode(evt.keyCode),cursX,cursY);
+			currentInput += String.fromCharCode(evt.keyCode);
+			cursX += 6;
+			return;
+		}
+	}
+	
+	//snake
+	if(pos == -1) {
+		switch(evt.keyCode) {
+			case 37:
+			case 65:
+				xv=-1;yv=0;
+				break;
+			case 38:
+			case 87:
+				xv=0;yv=-1;
+				break;
+			case 39:
+			case 68:
+				xv=1;yv=0;
+				break;
+			case 40:
+			case 83:
+				xv=0;yv=1;
+				break;
+		}
+	}
+}
+
+function snake() {
+	
+	//game is 88 wide, 31 tall
+	tx = 88;
+	ty = 31;
+	
+	//move head
+	px += xv;
+	py += yv;
+	
+	//draw background
+    ctx.fillStyle = "black";
+	ctx.fillRect(16,11,533,312);
+	
+	ctx.fillStyle=textColor;
+    for(var i=0;i<trail.length;i++) {
+        //draw tail
+		ctx.fillText("S",17 + trail[i].x*6,20 + trail[i].y*10);
+        
+		//lose condition
+		if(pos == -1 && ((trail[i].x==px && trail[i].y==py) || px < 0 || py < 0 || px>tx-1 || py>ty -1)) {
+            var blip = new Audio("blip.mp3");
+			blip.play();
+			clearInterval(interval);
+			pos = posMem;
+			cursorOff();
+			snakeAudio.pause();
+			type("IGRA OKONCENA!");
+			newline(2);
+        }
+    }
+    
+	//add elemets to tail
+	trail.push({x:px,y:py});
+    while(trail.length>tail) {
+    trail.shift();
+    }
+ 
+	//place apple
+    if(ax==px && ay==py) {
+        tail+=3;
+		ax=Math.floor(Math.random()*tx);
+		ay=Math.floor(Math.random()*ty);
+		var blip = new Audio("blip.mp3");
+		blip.play();
+    }
+	ctx.fillText("A",17 + ax*6,20 + ay*10);
+	ctx.fillText("" + (Math.floor(tail / 3) - 1),17 + 1*6,20 + 1*10);
+}
+
+function validateInput(input) {
+    newline(1);
+    var command = "";
+    var mod = "";
+    if(input.indexOf(' ') != -1) {
+        command = input.substring(0,input.indexOf(' '));
+        mod = input.substring(input.indexOf(' ') + 1);
+    }
+    else {
+        command = input;
+    }
+    switch(command) {
+        case ("HALP"):
+			newline(1);
+			type("Commands:");
+			newline(1);
+			type("CD - Change compact disk track, pause / play");
+			newline(1);
+			type("CLEAR / CLS - Clear screen");
+			newline(1);
+			type("HALP - Displays halp messages");
+			newline(1);
+			type("LSD - List system directory. Lists contents of current directory");
+			newline(1);
+			type("TREE - Graphically displays the current directory structure");
+			newline(2);
+			type("Installed Programs:");
+			newline(1);
+			type("10SB - 10S Browser. (c)2015 Iptepsilon, LLC");
+			newline(1);
+			type("BSIDE - BSdos Integrated Development Environment. \"Like Notepad, but slightly better\" TM");
+			newline(1);
+			type("CLPIC - CLpic DEMO can view JPEG, BMP, PNG, and GIF filetypes within the command line.");
+			newline(1);
+			type("JAVA - [no desc. available]");
+			newline(1);
+			type("S - s.js by Tim Holman");
+			newline(1);
+			type("SNEK - Eto klassiceskaja russkaja zmeja. (c)1998 Adrik Bogdanov");
+			newline(2);
+			type("Type <program> -HALP for more details");
+        break;
+		
+		case("10SB"):
+			iframe();
+			clearScreen();
+		break;
+		
+		case("BSIDE"):
+			switch (mod) {
+				case(""):
+				case("-HALP"):
+					type("<file> - Opens file");
+					newline(1);
+					type("-VERSION - Displays BSIDE version");
+				break;
+				
+				case("-VERSION"):
+					type("BSdos Integrated Development Environment (BSIDE) Version 3.14.1");
+					newline(1);
+					type("(c)1999-2011 Auburn University");
+					newline(1);
+					type("3101 Shelby Center, Auburn, Alabama 36849-5347");
+				break;
+				
+				case("1.23.1.JAR"):
+					type(".......................BSIDE V3.14.1 (c)1999-2011 Auburn University........................");
+					newline(2);
+					type("‰JAR - ZIPIHDR   €gAMA  ±Ž|ûQ“    cHRM  z%  €ƒ  ùÿ  €è  u0  ê`  :—  o—©™Ô  [JIDATxœb,8ðŸa ");
+					newline(2);
+					type("...........................end concatenation. Stopping program.............................");
+				break;
+				
+				case("BANNED-PLAYERS.JSON"):
+					type(".......................BSIDE V3.14.1 (c)1999-2011 Auburn University........................");
+					newline(2);
+					type("[");newline(1);
+					type("    {");newline(1);
+					type("        \"uuid\": \"9f666b60-16666-4666-6661-3f3666c666fb\",");newline(1);
+					type("        \"name\": \"_ch4ron\",");newline(1);
+					type("    }");newline(1);
+					type("]");
+					newline(2);
+					type("...........................end concatenation. Stopping program.............................");
+				break;
+				
+				case("EULA.TXT"):
+					clearScreen();
+					newline(2);
+					type("it's you");
+					document.title = "Welcome to BSOD!";
+					pos = 1;
+					newline(2);
+					light.play();
+					oofct = 100;
+					header.innerHTML="BSOD   Online Terminal. Machine IP: 127.0.0.1"
+					snakeAudio.src = "snake2.mp3";
+				break;
+				
+				case("OPS.JSON"):
+					type(".......................BSIDE V3.14.1 (c)1999-2011 Auburn University........................");
+					newline(2);
+					type("[");newline(1);
+					type("    {");newline(1);
+					type("        \"uuid\": \"9f632b60-168c-43d5-aae1-3f324fc2436b\",");newline(1);
+					type("        \"name\": \"Awesome_1\",");newline(1);
+					type("        \"level\": 4,");newline(1);
+					type("        \"bypassesPlayerLimit\": false");newline(1);
+					type("    },");newline(1);
+					type("    {");newline(1);
+					type("        \"uuid\": \"efa185ee-148e-49cc-bb47-916b8b35793a\",");newline(1);
+					type("        \"name\": \"_er1s\",");newline(1);
+					type("        \"level\": 4,");newline(1);
+					type("        \"bypassesPlayerLimit\": false");newline(1);
+					type("    }");newline(1);
+					type("]");
+					newline(2);
+					type("...........................end concatenation. Stopping program.............................");
+				break;
+				
+				case("SERVER.PROPERTIES"):
+					type(".......................BSIDE V3.14.1 (c)1999-2011 Auburn University........................");
+					newline(2);
+					type("#Minecraft server properties"); newline(1);
+					type("#Thu Oct 28 13:40:37 EST 2012"); newline(1);
+					type("spawn-protection=8"); newline(1);
+					type("max-tick-time=60000"); newline(1);
+					type("generator-settings="); newline(1);
+					type("force-gamemode=false"); newline(1);
+					type("allow-nether=true"); newline(1);
+					type("gamemode=0"); newline(1);
+					newline(2);
+					type("...........................end concatenation. Stopping program.............................");
+				break;
+				
+				case("SERVER-ICON.PNG"):
+					type(".......................BSIDE V3.14.1 (c)1999-2011 Auburn University........................");
+					newline(2);
+					type("‰PNGIHDR   €   €   L\öœ   gAMA  ±Ž|ûQ“    cHRM  z%  €ƒ  ùÿ  €è  u0  ê`  :—  o—©™Ô  [JIDATxœb,8ðŸa ");
+					newline(2);
+					type("...........................end concatenation. Stopping program.............................");
+				break;
+				
+				default:
+					type("Invalid filepath: '" + mod + "'");
+					newline(1);
+					type("'BSIDE -HALP' for help");
+				break;
+			}
+		break;
+		
+        case("CD"):
+			type("No disc inserted. Please insert a disk and try again.");
+        break;
+        
+		case ("CLEAR"):
+        case ("CLS"):
+			clearScreen();
+        break;
+		
+		case("CLPIC"):
+			switch (mod) {
+				case(""):
+				case("-HALP"):
+					type("<file> - Open image file");
+					newline(1);
+					type("-VERSION - Displays program version");
+				break;
+				
+				case("-VERSION"):
+					type("CLpic V1.3");
+					newline(1);
+					type("Author: Patrick Norton");
+				break;
+				
+				case("SERVER-ICON.PNG"):
+					clearScreen();
+					newline(1);
+					type("CLpic V1.3         Author: Patrick Norton");
+					newline(2);
+					type("........................................,.`");
+					newline(1);
+					type("........................................```");
+					newline(1);
+					type("..............,........................,`..");
+					newline(1);
+					type("......................................``...");
+					newline(1);
+					type("............++;....................``````..");
+					newline(1);
+					type("...........++++'.,.................`.......");
+					newline(1);
+					type("...........++++'':..........,..............");
+					newline(1);
+					type("...........+###++;.;'+,..,++;..............");
+					newline(1);
+					type("...........,;++++++''+'';;+#+....,.........");
+					newline(1);
+					type("..........:+'++##+''''''+++#+'.,...........");
+					newline(1);
+					type(".........,++++++''+'++'''###+..++,.....``..");
+					newline(1);
+					type("..........''++++'++''''''+#;;.++##.........");
+					newline(1);
+					type(".........,'+''++'++++'''''+'','+++.........");
+					newline(1);
+					type(".........''''''''''+'+++''+''';,'..........");
+					newline(1);
+					type(",........+''''''''''++''''''+'''+..........");
+					newline(1);
+					type(";,.,;:,..++''''+''''''+''''+''''';.........");
+					newline(1);
+					type(";:,:;;;.'''+'''++'''''++++'''''''''.......,");
+					newline(1);
+					type(":::;;;;;+''++++++'''+#++++'''''''''':....;#");
+					newline(1);
+					type("+;:;:;;'''+##++''''++#+'+++'''+#++##++..;##");
+					newline(1);
+					type("##+;:;;''+####++'++#####+'+'''#######'..++#");
+					newline(1);
+					type("###+;;:''#####+''''#####+++'+########+;;###");
+					newline(1);
+					type("####+'''+'+#++++''''##+++'+'+#########'####");
+					newline(1);
+					type("###++++'+++#++''++'+##++'+'++++#+'+#+++####");
+					newline(1);
+					type("##++++++'+++++'+''''++++''''++'#+++#''#####");
+					newline(1);
+					type("+++++'+'+++++++'''''++'++++++'#++###+++##+#");
+					newline(1);
+					type("+++++++''+'++++'+'''++'++++++'++'''++++++++");
+					newline(1);
+					type(";;;;;:;;,;:;;,;:;:;;;:;;;';;:;;;'''+;';;;';");
+					newline(1);
+					type(":;;;;,;;,;:;;:;,;::::,:;:;;;:::;++'+;';;:;:");
+					newline(1);
+					type(";;;,;,;;,;,;,;:;:;;+;,;:;;,;;:++++'+;++++++");
+					newline(1);
+					type("''''''''''''''';;''''';''''''''''''''''''''");
+					newline(1);
+					type("'';';';;;';;;;';;;;;;;;;;;;;;''''''''''''''");
+					newline(1);
+					type("'''''''''''''''''''''''''''''''''''''''''''");
+					newline(2);
+					type("DEMO ONLY - SERVICE EXITED");
+				break;
+				
+				default:
+					type("Invalid filepath name (or non-image): '" + mod + "'");
+					newline(1);
+					type("'CLPIC -HALP' for help");
+				break;
+			}
+		break;
+        
+        case("DIR"):
+			type("'DIR' is depreciated. Please use 'LSD' instead");
+        break;
+		
+		case ("HELLO"):
+			type("hi")
+		break;
+		
+		case ("HELP"):
+			type("'HELP' is depreciated. Please use 'HALP' instead.")
+		break;
+        
+        case("JAVA"):
+			switch (mod) {
+				case(""):
+				case("-HALP"):
+					type("<file> - Run compiled java program");
+					newline(1);
+					type("-JAR <file> - Run compiled jar program");
+					newline(1);
+					type("-VERSION - Display java version");
+				break;
+				
+				case("-VERSION"):
+					type("Java 19.4.3.184");
+				break;
+				
+				case("-JAR 1.23.1.JAR"):
+					switch(pos) {
+						case 0:
+							type("[Server thread/INFO]: Starting Minecraft server version 1.23.1"); newline(1);
+							type("[Server thread/INFO]:Loading SERVER.PROPERTIES"); newline(1);
+							type("[Server thread/WARN]:Failed to load EULA.TXT"); newline(1);
+							type("[Server thread/INFO]:You need to agree to the EULA in order to run the server."); newline(1);
+							type("[Server thread/INFO]:Stopping server..."); newline(1);
+						break;
+						
+						case 1:
+							pos = -2;
+							script = scriptImport.responseText;
+							while(script.length > 0) {
+								if(script.indexOf("\n") != -1) {
+									var tempScript = script.substring(0,script.indexOf("\n"));
+									script = script.substring(script.indexOf("\n") + 1,script.length);
+								}
+								else {
+									var tempScript = script;
+									script = "";
+								}
+								setTimeout(delayText, 
+											tempScript.substring(0,tempScript.indexOf(" ")), 
+											tempScript.substring(tempScript.indexOf(" ") + 1),tempScript.length);
+							}
+						break;
+					}
+				break;
+				
+				default:
+					type("Invalid filepath name: '" + mod + "'");
+					newline(1);
+					type("Input 'JAVA -HALP' for a list of valid arguments");
+				break;
+			}
+        break;
+        
+        case("LS"):
+			type("'LS' is depreciated. Please use 'LSD' instead");
+        break;
+        
+        case ("LSD"):
+			type("Directory 'ROOT/.MINECRAFT' contains:");
+			newline(1);
+			type("  Directory:CRASH-REPORTS");
+			newline(1);
+			type("  Directory:LOGS");
+			newline(1);
+			type("  Directory:MODS");
+			newline(1);
+			type("  Directory:WORLD");
+			newline(1);
+			type("    1.23.1.JAR");
+			newline(1);
+			type("    BANNED-PLAYERS.JSON");
+			newline(1);
+			type("    EULA.TXT");
+			newline(1)
+			type("    OPS.JSON");
+			newline(1);
+			type("    SERVER.PROPERTIES ");
+			newline(1);
+			type("    SERVER-ICON.PNG");
+        break;
+        
+		case("ROBLOX"):
+			oofct++;
+			oofer = setInterval(loopOof, 100);
+		break;
+		
+		case("S"):
+			type("  _"); newline(1);
+			type(" / \\"); newline(1);
+			type("/ | \\"); newline(1);
+			type("| | |"); newline(1);
+			type("\\ \\ /"); newline(1);
+			type(" \\ \\"); newline(1);
+			type("/ \\ \\"); newline(1);
+			type("| | |"); newline(1);
+			type("\\   /"); newline(1);
+			type(" \\_/"); newline(1);
+		break;
+		
+		case("SNEK"):
+			snakeAudio.load();
+			snakeAudio.play();
+			if(pos==1) { 
+				tail = 3000000000;
+			}
+			else {
+				tail = 5;
+			}
+			posMem = pos;
+			pos = -1;
+			clearScreen();
+			newline(1);
+			px = py = 10;
+			xv = 1
+			yv = 0;
+			ax = ay= 15;
+			trail = [];
+			type("############################ SNEK v1.0 (c)1998 Adrik Bogdanov #############################"); newline(1);
+			type("#                                                                                         #"); newline(1);
+			type("#                                                                                         #"); newline(1);
+			type("#                                                                                         #"); newline(1);
+			type("#                                                                                         #"); newline(1);
+			type("#                                                                                         #"); newline(1);
+			type("#                                                                                         #"); newline(1);
+			type("#                                                                                         #"); newline(1);
+			type("#                                                                                         #"); newline(1);
+			type("#                                                                                         #"); newline(1);
+			type("#                                                                                         #"); newline(1);
+			type("#                                                                                         #"); newline(1);
+			type("#                                                                                         #"); newline(1);
+			type("#                                                                                         #"); newline(1);
+			type("#                                                                                         #"); newline(1);
+			type("#                                                                                         #"); newline(1);
+			type("#                                                                                         #"); newline(1);
+			type("#                                                                                         #"); newline(1);
+			type("#                                                                                         #"); newline(1);
+			type("#                                                                                         #"); newline(1);
+			type("#                                                                                         #"); newline(1);
+			type("#                                                                                         #"); newline(1);
+			type("#                                                                                         #"); newline(1);
+			type("#                                                                                         #"); newline(1);
+			type("#                                                                                         #"); newline(1);
+			type("#                                                                                         #"); newline(1);
+			type("#                                                                                         #"); newline(1);
+			type("#                                                                                         #"); newline(1);
+			type("#                                                                                         #"); newline(1);
+			type("#                                                                                         #"); newline(1);
+			type("#                                                                                         #"); newline(1);
+			type("#                                                                                         #"); newline(1);
+			type("###########################################################################################"); newline(1);
+			interval = setInterval(snake,1000/15);
+		break;
+		
+		case ("SUDO"):
+			type("SUDO make me a sandwich.");
+		break;
+		
+        case ("TREE"):
+			type("          &&& &&  & &&");
+			newline(1);
+			type("        && &\\/&\|& ()|/ @, &");
+			newline(1);
+			type("      &\\/(/&/&||/& /_/)_&/_&");
+			newline(1);
+			type("   &() &\\/&|()|/&\\/ '%\" & ()");
+			newline(1);
+			type("  &_\\_&&_\\ |& |&&/&__%_/_& &");
+			newline(1);
+			type(" &   && & &| &| /& & % ()& /&");
+			newline(1);
+			type(" ()&_---()&\\&\\|&&-&&--%---()~");
+			newline(1);
+			type("    &&      \\|||");
+			newline(1);
+			type("             |||");
+			newline(1);
+			type("             |||");
+			newline(1);
+			type("             |||");
+			newline(1);
+			type("       , -=-~  .-^- _");
+        break;
+        
+        default:
+			type("'" + command + "' is not recognised as an internal or external command.");
+			newline(1);
+			type("Input 'HALP' for a list of valid commands.");
+        break;
+    }
+    newline(2);
+}
+
+function preventBackspaceHandler(evt) {
+    evt = evt || window.event;
+    if (evt.keyCode == 8) {
+        return false;
+    }
+}
+
+var start = function() {
+	var windowURL = window.location.href;
+	windowURL = windowURL.substring(windowURL.indexOf("?")+1,windowURL.length);
+	if(windowURL == "127.0.0.1") {
+		document.onkeydown = preventBackspaceHandler;
+		displayTerm();
+		window.addEventListener('keydown',doKeyDown,true);
+		setInterval('flashCursor()',500);
+		boot.play();
+	}
+	else {
+		header.innerHTML = "The URL entered does not match any current open shell environment.";
+	}
+}
+
+document.body.onload = function() { setTimeout(start(), 2000); };
+
+</script>
+</body>
+</html>

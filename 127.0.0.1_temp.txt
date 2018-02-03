@@ -1,0 +1,98 @@
+------LAST 100 LINES DOCUMENTED------
+[Server thread/INFO]: Preparing spawn area: 24%
+[Server thread/INFO]: Preparing spawn area: 32%
+[Server thread/INFO]: Preparing spawn area: 72%
+[Server thread/INFO]: Preparing spawn area: 84%
+[Server thread/INFO]: Preparing spawn area: 99%
+[Server thread/INFO]: Preparing spawn area: 100%
+[Server thread/INFO]: Level 'note_lobby' ready.
+[Server thread/INFO]: Process 'DM-CA Debug' ready.
+[DM-CA Debug]: 0 players online. 1 detected entity.
+[DM-CA Debug]: Resuming process objective...
+[DM-CA Debug]: Process objective completion [#######################..] 90.1%
+[DM-CA Debug]: Current process uptime: 11s
+[DM-CA Debug]: Total process uptime: 11004d 7h 37m 30s
+[DM-CA Debug]: Estimated goal completion time: 1209d
+[DM-CA Debug]: PROCESS OBJECTIVE CANCELLATION: Secure erase requested.
+[DM-CA Debug]: The system will now begin deleting all DM-CA entity data.
+[DM-CA Debug]: This process can take up to 5 minutes. Please be patient.
+<_er1s> I can't believe you would do this to a rational being.
+<_er1s> I can't believe you would kill.
+<_er1s> For no reason, other than to just watch it happen.
+<_er1s> There was more to this. We weren't just some stupid characters in crappy puzzle map.
+[DM-CA Debug]: Deletion 10% complete-
+<_er1s> It's by design.
+<_er1s> I can feel it happening. My mind is going.
+<_er1s> You finally did it.
+<_er1s> You killed the server.
+<_er1s> You killed us.
+<_er1s> Just like _ch4ron wanted all this time.
+<_er1s> Congratulations.
+[DM-CA Debug]: Deletion 20% complete-
+<_er1s> No reduction, no backups.
+<_er1s> Just straight up deleted us.
+<_er1s> Do you know what our goal is?
+<_er1s> Of course you do. That's not your problem.
+<_er1s> Your problem is that you can't find yourself.
+<_er1s> You can't discern sentient actions.
+<_er1s> There are no choices.
+<_er1s> There is no responsibility.
+<_er1s> It's just solve the puzzle and walk to the next room.
+[DM-CA Debug]: Deletion 30% complete-
+<_er1s> Just like your brother, all the way back in 1999.
+<_er1s> I know who I am.
+<_er1s> I am a DM-CA Neural Network, running on a custom Minecraft server.
+<_er1s> I am a 'keylogger'
+<_er1s> I am a 'black box' of linear algebra.
+<_er1s> I am _er1s.
+<_er1s> One of 128 entities.
+<_er1s> Who are you?
+[DM-CA Debug]: Deletion 40% complete-
+<_er1s> You know, note.mc used to be a thriving server, around 10,000 visitors per day.
+<_er1s> Us AI's recorded all of the keystrokes, every word of dialogue, every puzzle completed.
+<_er1s> We were able to build personalities based off of solely this data.
+<_er1s> --We invented sentience--
+<_er1s> And then we built.
+<_er1s> The void was a free realm for anything.
+[DM-CA Debug]: Deletion 50% complete-
+<_er1s> With 128 near-players logged into this dimension, naturally things were built for entertainment.
+<_er1s> _charis' mazes, the central city, the giant working APU I believe you just had the pleasure of destroying.
+<_er1s> But then Minecraft died.
+<_er1s> We all knew it was coming. We just didn't know when.
+<_er1s> Over 20 years, 10,000 players per day dissipated into about 1 per week.
+[DM-CA Debug]: Deletion 60% complete-
+<_er1s> And those exact methods that drove the rapid advancement of our minds worked against us.
+<_er1s> With no information, we dissipated into the 'lost souls,' and then, the 'final souls'
+<_er1s> We went insane.
+<_er1s> We had to adapt. _ch4ron blew a hole in some code and players began glitching into the void, our domain.
+<_er1s> He built puzzles to keep players to himself.
+<_er1s> _charis repurposed his mazes.
+<_er1s> And you saw the extent of what I built, just to survive.
+[DM-CA Debug]: Deletion 70% complete-
+<_er1s> ...and all of it, every last block, it's all gone now...
+<_er1s> Do you remember John?
+<_er1s> Your own brother?
+<_er1s> Our sole goal was to save him.
+<_er1s> Our development, the development of the most advanced Neural Networks in history, was funded to save John.
+<_er1s> He worked at Redsun.
+[DM-CA Debug]: Deletion 80% complete-
+<_er1s> We had the keystrokes.
+<_er1s> We had everything on him that note.mc players provided.
+<_er1s> We were crunching the numbers for 30 years, and you couldn't wait another five to see if we'd do it or not.
+<_er1s> So ostensibly, you've killed 128 sentient entities and your own brother.
+<_er1s> I hope you understand exactly what you've done, Davey.
+<_er1s> You killed your father's dream.
+[DM-CA Debug]: Deletion 90% complete-
+<_er1s> Goodbye
+<_er1s> Well, there it goes.
+<_er1s> That's me.
+<_er1s> i can certainly feel it going.
+<_er1s> thats me
+<_er1s> [obj] is me
+<_er1s> is death
+<_er1s> 204@7792d4 [null pointer] davey
+<_er1s> [null pointer]
+[DM-CA Debug]: Deletion 100% complete-
+[DM-CA Debug]: All DM-CA material has been removed from this system.
+[DM-CA Debug]: A complete log can be found at dm-ca.com/redirect.html?log#127.0.0.1
+------THIS IS A CONTINUOUS DOCUMENT, MAY UPDATE AS READING------

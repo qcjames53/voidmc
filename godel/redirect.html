@@ -1,0 +1,71 @@
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Redirecting</title>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet"> 
+    
+</head>
+<body style="overflow: hidden; background-color:black; color:lawngreen; font: 12px Ubuntu Mono;">
+	Public Directory Index
+	<div id=godel>
+
+	</div>
+	
+	<script>
+		var windowURL = window.location.href;
+		windowURL = windowURL.substring(windowURL.indexOf("?")+1,windowURL.length);
+		var godel = document.getElementById("godel");
+		var words;
+		
+		switch(windowURL) {
+			case "1":
+				words = ["escher","bach","kurt_halsey"];
+			break;
+			case "2":
+				words = ["air","animal","ball","beast","berata","bless","cold","creature","cube","curse","darkness","demon","destroy","dry","earth","elder","elemental","embiggen","enchant","fiddle","fire","free","fresh","galvanize","grow","hot","humanoid","ignite","imbue","inside","klaatu","light","limited","mental","niktu","of","other","physical","range","scrolls","self","shorten","shrink","snuff","sphere","spirit","stale","stretch","the","towards","twist","undead","water","wet","xyzzy"];
+			break;
+			case "3":
+				words = ["8","6","7","5","3","0","9"];
+			break;
+			case "4":
+				words = ["steam"];
+			break;
+			case "5":
+				words = ["steamapps"];
+			break;
+			case "6":
+				words = ["common"];
+			break;
+			case "7":
+				words = ["alien_isolation","cities_skylines","css","dod","firewatch","game_dev_tycoon","hl2","planet_coaster","poney_island","portal2","superhot","the_beginners_guide","undertale"];
+			break;
+			case "8":
+				words = ["bin","platform","sdk","soundtrack","update"];
+			break;
+			case "9":
+				words = ["4","8","15","16","23","42"];
+			break;
+			case "10":
+			break;
+			default:
+				windowURL="0";
+				words = ["godel"];
+			break;
+		}
+	
+		
+		var text = "<table><tr> <th>Directories&emsp;&emsp;&emsp;</th> <th>Files</th> </tr>";
+		if(windowURL != "10") {
+			for (var i = 0; i < words.length; i++){
+				text += "<tr><td><a href=\"redirect.html?" + (Number(windowURL) + 1) + "\">" + words[i] + "</a></td></tr>";
+			}
+		}
+		else {
+			text += "<tr><td><a href=\"../redirect.html?log#127.0.0.1\">phil</a></td></tr>";
+		}
+		text += "</table>";
+		godel.innerHTML = text;
+	</script>
+</body>
+</html>

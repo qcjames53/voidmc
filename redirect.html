@@ -1,0 +1,41 @@
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Redirecting</title>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet"> 
+    
+</head>
+<body style="overflow: hidden; background-color:black; color:lawngreen; font: 12px Ubuntu Mono;">
+	<div id=header ></div>
+	<div id=table>
+	<br/>Public Directory Index
+	<table>
+	<tr> <th>Directories&emsp;&emsp;&emsp;</th> <th>Files</th> </tr>
+	<tr> <td><a href=redirect.html?forbidden>api</a></td> <td><a href="redirect.html?redirect">redirect.html</a></td> </tr>
+	<tr> <td><a href=redirect.html?forbidden>codebase_2010</a></td> <td><a href="console.html?0.0.0.0">console.html</a></td> </tr>
+	<tr> <td><a href=godel/redirect.html?1>godel</a></td> <td><a href="logo.png">logo.png</a></td> </tr>
+	<tr> <td><a href=shkr1234/redirect.html>shkr1234</a></td> <td><a href="metadata_temp.txt">metadata_temp.txt</a></td> </tr>
+	<tr> <td><a href=redirect.html?forbidden>userData</a></td> <td><a href="old-homepage.html">old-homepage.html</a></td> </tr>
+	<tr> <td><a href=redirect.html?forbidden>zyx</a></td> <td><a href="127.0.0.1_temp.txt">127.0.0.1_temp.txt</a></td> </tr>
+	<tr> <td></td> <td><a href="192.168.103.405_temp.txt">192.168.103.405_temp.txt</a></td> </tr>
+	</table>
+	</div>
+
+	<script>
+		var windowURL = window.location.href;
+		var header = document.getElementById("header");
+		var table = document.getElementById("table");
+		windowURL = windowURL.substring(windowURL.indexOf("?")+1,windowURL.length);
+		switch(windowURL) {
+			case("forbidden"):
+				header.innerHTML = "FORBIDDEN: NOT AN EXTERNAL DIRECTORY";
+				table.innerHTML = "";
+			break;
+			default:
+				header.innerHTML = "The requested resource, '" + windowURL + "', could not be located.";
+			break;	
+		}
+	</script>
+</body>
+</html>

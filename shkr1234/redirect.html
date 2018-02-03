@@ -1,0 +1,30 @@
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Redirecting</title>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet"> 
+    
+</head>
+<body style="overflow: hidden; background-color:black; color:lawngreen; font: 12px Ubuntu Mono;">
+	<div></div>
+	Public Directory Index
+	<table>
+	<tr> <th>Directories&emsp;&emsp;&emsp;</th> <th>Files</th> </tr>
+	<tr> <td><a href="../redirect.html">(Parent) /</a></td> <td><a href="redirect.html?redirect">redirect.html</a></td> </tr>
+	<tr> <td></td> <td><a href="animations.html">animations.html</a></td> </tr>
+	<tr> <td></td> <td><a href="comic-sans.html">comic-sans.html</a></td> </tr>
+	<tr> <td></td> <td><a href="rainbow_banner.jpg">rainbow_banner.jpg</a></td> </tr>
+	</table>
+
+	<script>
+		var windowURL = window.location.href;
+		windowURL = windowURL.substring(windowURL.indexOf("?")+1,windowURL.length);
+		switch(windowURL) {
+			default:
+				header.innerHTML = "The requested resource, '" + windowURL + "', could not be located.";
+			break;	
+		}
+	</script>
+</body>
+</html>
