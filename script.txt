@@ -115,11 +115,11 @@
 270000 <_er1s> Well, there it goes.
 273000 <_er1s> That's me.
 275000 <_er1s> i can certainly feel it going.
-278000 <_er1s> thats me
-280000 <_er1s> [obj] is me
-284000 <_er1s> is death
-287000 <_er1s> 204@7792d4 [null pointer] davey
-289000 <_er1s> [null pointer]
+278000 <_er1s> theres just too much
+280000 <_er1s> and
+284000 <_er1s> so little feels important
+287000 <_er1s> 204@7792d4 [null]
+289000 <_er1s> what do you do
 290499 #CMD: color<gray>
 290500  [DM-CA Debug]: Deletion 100% complete-
 291501  [DM-CA Debug]: All DM-CA material has been removed from this system.
